@@ -17,13 +17,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+# Database Model
 
-#   db.init_app(app)
-
-#   from routes import register_routes
-#   register_routes(app, db)
-#
-#   migrate = Migrate(app, db)
 
 #ROutes
 @app.route('/')
