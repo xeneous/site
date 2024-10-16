@@ -1,8 +1,9 @@
-from flask import Flask, Blueprint, request, redirect, render_template
+from flask import Flask, Blueprint, request, redirect, render_template, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 from flask_bcrypt import bcrypt
 from flask_migrate import Migrate
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from waitress import serve
 
@@ -25,10 +26,13 @@ app = Flask(__name__)
 vPort = 5000
 
 @app.route('/')
-def index():
+def home():
+    if "username" in session:
+        return redirect(url_for('dashboard'))
+    
     return render_template('index.html')
 
-mode = 'prod'
+mode = 'dev'
 
 if __name__ == '__main__':
     if mode == 'dev':
