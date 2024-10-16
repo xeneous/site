@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "sao"
+version = "0.1.0"
+description = "ERP SAO"
+authors = ["Xeneous"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.0.3"
+flask-login = "^0.6.3"
+flask-sqlalchemy = "^3.1.1"
+bcrypt = "^4.2.0"
+flask-bcrypt = "^1.0.1"
+flask-migrate = "^4.0.7"
+waitress = "^3.0.0"
+routes = "^2.5.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
