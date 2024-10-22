@@ -46,9 +46,9 @@ def login():
     postPassword=request.form['password']
     user = User.query.filter_by(username=postUsername).first()
 
-    if user and user.chech_password(postPassword):
+    if user and user.check_password(postPassword):
         session['username'] = postUsername
-        return redirect(url_for,'Dashboard')
+        return redirect(url_for('dashboard'))
     else:
         return render_template("index.html")
     
@@ -72,11 +72,22 @@ def register():
         db.session.add(new_User)
         db.session.commit()
         session['username'] = postUsername
-        return redirect(url_for,'Dashboard')
+        return redirect(url_for('dashboard'))
     
 #Dashboard
+@app.route('/dashboard')
+def dashboard():
+    if "username" in session:
+        return render_template("dashboard.html", username=session['username'])
+    
+    return redirect(url_for('home'))
+
 
 #logout
+@app.route('/logout')
+def logout():
+    session.pop('username',None)
+    return redirect(url_for('home'))
 
 mode = 'dev'
 
